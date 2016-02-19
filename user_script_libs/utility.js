@@ -28,6 +28,30 @@ function addScript(url) {
 }
 
 /* Usage:
+ *　if you have a function aFunction(a, b){ return true; }
+ *  you can convert it to string and add to the page:
+ *    var s = " " + aFunction; // convert to string
+ *    addScriptCode(s);        // add to the page
+ *
+ *  you can also add a function variable
+ *    addScriptCode(aFunction);
+ */
+function addScriptCode(code) {
+	// inject my code in page
+	var str = '';
+	if(typeof str != 'string'){
+		str = '' + code; // convert to string
+	}else{
+		str = code;
+	}
+
+	var script = document.createElement('script');
+	script.appendChild(document.createTextNode(str));
+	(document.body || document.head || document.documentElement).appendChild(script);
+}
+
+
+/* Usage:
  *  var v = getUrlParam('p1'); // (Ex) http://foo.bar/somepage?p1=abc&p2=def..., the value of v will be "abc"
  */
 function getUrlParam(param) {
