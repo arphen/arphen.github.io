@@ -39,7 +39,7 @@ function addScript(url) {
 function addScriptCode(code) {
 	// inject my code in page
 	var str = '';
-	if(typeof str != 'string'){
+	if(typeof code != 'string'){
 		str = '' + code; // convert to string
 	}else{
 		str = code;
