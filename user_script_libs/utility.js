@@ -17,14 +17,19 @@ var myLog = {
 };
 
 
-/* Usage:
- *  addScript('http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js');  // 允許插入和原page不同domain的js
+/* Note: 必須原始網站沒有限制CSP(Content Security Policy)才能允許引用其它domain之js
+ * Usage:
+ *  addScript('http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js');
  */
 function addScript(url) {
 	var scriptElement = document.createElement( "script" );
 	scriptElement.type = "text/javascript";
 	scriptElement.src = url;
-	document.body.appendChild( scriptElement );
+	try{
+		document.body.appendChild( scriptElement );
+	catch(err){
+		alert('addScript failed: '+url + '\n' + err.message);
+	}
 }
 
 /* Usage:
