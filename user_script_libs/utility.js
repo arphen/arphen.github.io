@@ -27,7 +27,7 @@ function addScript(url) {
 	scriptElement.src = url;
 	try{
 		document.body.appendChild( scriptElement );
-	catch(err){
+	}catch(err){
 		alert('addScript failed: '+url + '\n' + err.message);
 	}
 }
