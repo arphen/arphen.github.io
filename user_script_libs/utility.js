@@ -27,7 +27,7 @@ function addScript(url) {
 		scriptElement.type = "text/javascript";
 		scriptElement.src = url;
 		document.body.appendChild( scriptElement );
-	}catch(err){
+	}catch(err){ // unable to catch exception if blocked by CSP, but can see error in console
 		alert('addScript failed: '+url + '\n' + err.message);
 	}
 }
