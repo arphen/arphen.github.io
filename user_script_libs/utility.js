@@ -22,10 +22,10 @@ var myLog = {
  *  addScript('http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js');
  */
 function addScript(url) {
-	var scriptElement = document.createElement( "script" );
-	scriptElement.type = "text/javascript";
-	scriptElement.src = url;
 	try{
+		var scriptElement = document.createElement( "script" );
+		scriptElement.type = "text/javascript";
+		scriptElement.src = url;
 		document.body.appendChild( scriptElement );
 	}catch(err){
 		alert('addScript failed: '+url + '\n' + err.message);
