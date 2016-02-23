@@ -1,3 +1,16 @@
+/* Usage
+ *   var s = 'This is {0} a {1} world'.format('really', 'small');
+ */
+String.prototype.format = function(){
+	var temp = this;
+	for (var i=0; i < arguments.length; i++) {
+		//base += Number(arguments[i]);
+		temp = temp.replace('{'+i+'}', arguments[i]);
+	}
+	this = temp;
+	return this;
+}
+
 /* Usage:
  *  myLog.init('TW116'); // before you use myLog, set the title of your script.
  *  myLog.log('hello world!'); // print any message you want, then it will display in chrome console.
