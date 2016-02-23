@@ -4,11 +4,11 @@
 String.prototype.format = function(){
 	var temp = this;
 	for (var i=0; i < arguments.length; i++) {
-		//base += Number(arguments[i]);
-		temp = temp.replace('{'+i+'}', arguments[i]);
+    	var rx = new RegExp('\\{'+i+'\\}', 'ig');
+		//temp = temp.replace('{'+i+'}', arguments[i]);
+    		temp = temp.replace(rx, arguments[i]);
 	}
-	this = temp;
-	return this;
+	return temp;
 }
 
 /* Usage:
