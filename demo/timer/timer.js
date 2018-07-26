@@ -121,7 +121,8 @@ function main() {
       } else {
         StopTimer();
       }
-    });
+    })
+    .focus();
 
   $('#ok1')
     .on('click', function () {
