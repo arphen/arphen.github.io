@@ -127,6 +127,8 @@ function main() {
     .on('click', function () {
       $('#overlay')
         .hide();
+      $('#btnTimer')
+        .focus();
       gTimer = setInterval(countDown.bind(null, '#timer2'), 1000);
     });
 
@@ -134,6 +136,8 @@ function main() {
     .on('click', function () {
       $('#overlay')
         .hide();
+      $('#btnTimer')
+        .focus();
       StopTimer();
       StartTimer();
     });
