@@ -1,6 +1,6 @@
 var gIntervalThreeSeconds = 3000;
-var gInterv1 = 60;
-var gInterv2 = 10;
+var gInterv1 = 5;
+var gInterv2 = 3;
 var gTimer;
 
 function setupChromeNotify() {
@@ -87,24 +87,28 @@ function chromeNotify(title, body) {
   if (Notification.permission !== 'granted') {
     Notification.requestPermission();
   } else {
-    var notification = new Notification(title, {
+    var n = new Notification(title, {
       // icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
       icon: 'https://raw.githubusercontent.com/arphen/arphen.user.js/master/img/outlook.png',
       body: body
     });
 
-    notification.onshow = function () {
+    n.onshow = function () {
       setTimeout(function () {
-        notification.close();
+        n.close();
       }, gIntervalThreeSeconds); // close after 3 sec;
     };
 
-    notification.onclick = function () {
+    n.onclick = function () {
       // window.open('http://stackoverflow.com/a/13328397/1269037')
       // switch to email tab
       // chrome.tabs - Google Chrome - https://goo.gl/ykUrga
-      notification.close();
+      window.focus();
+      this.cancel();
+
+      n.close();
     };
+
   }
 }
 
