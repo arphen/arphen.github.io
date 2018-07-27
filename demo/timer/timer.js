@@ -71,6 +71,7 @@ function chromeNotify(title, body) {
   if (Notification.permission !== 'granted') {
     Notification.requestPermission();
   } else {
+    // options - https://goo.gl/W8Wr6r
     var n = new Notification(title, {
       body: body,
       requireInteraction: true // Notify不會自動關閉
