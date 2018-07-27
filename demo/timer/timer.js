@@ -92,9 +92,8 @@ function chromeNotify(title, body) {
       // switch to email tab
       // chrome.tabs - Google Chrome - https://goo.gl/ykUrga
 
-      // 以下二行可切回原視窗
+      // 以下可切回原視窗
       window.focus();
-      this.cancel();
 
       // 關閉
       n.close();
