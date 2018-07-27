@@ -72,12 +72,11 @@ function chromeNotify(title, body) {
     Notification.requestPermission();
   } else {
     var n = new Notification(title, {
-      // icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
-      icon: 'https://raw.githubusercontent.com/arphen/arphen.user.js/master/img/outlook.png',
-      body: body
+      body: body,
+      requireInteraction: true // Notify不會自動關閉
     });
 
-    // 以下設定自動關閉通知
+    // 以下設定自動關閉Notify
     /*    
         n.onshow = function () {
           setTimeout(function () {
@@ -86,6 +85,7 @@ function chromeNotify(title, body) {
         };
     */
 
+    // 點了Notify的動作
     n.onclick = function () {
       // window.open('http://stackoverflow.com/a/13328397/1269037')
       // switch to email tab
@@ -95,6 +95,7 @@ function chromeNotify(title, body) {
       window.focus();
       this.cancel();
 
+      // 關閉
       n.close();
     };
 
