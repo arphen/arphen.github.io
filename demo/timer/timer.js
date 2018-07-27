@@ -3,22 +3,6 @@ var gInterv1 = 5;
 var gInterv2 = 3;
 var gTimer;
 
-function setupChromeNotify() {
-  // request permission on page load
-  /*  
-    document.addEventListener('DOMContentLoaded', function () {
-      if (Notification.permission !== 'granted') {
-        Notification.requestPermission();
-      }
-    });
-  */
-
-  if (Notification.permission !== 'granted') {
-    Notification.requestPermission();
-  }
-  debugger;
-}
-
 function StartTimer() {
   $('#btnTimer')
     .html('Stop');
@@ -93,16 +77,21 @@ function chromeNotify(title, body) {
       body: body
     });
 
-    n.onshow = function () {
-      setTimeout(function () {
-        n.close();
-      }, gIntervalThreeSeconds); // close after 3 sec;
-    };
+    // 以下設定自動關閉通知
+    /*    
+        n.onshow = function () {
+          setTimeout(function () {
+            n.close();
+          }, gIntervalThreeSeconds); // close after 3 sec;
+        };
+    */
 
     n.onclick = function () {
       // window.open('http://stackoverflow.com/a/13328397/1269037')
       // switch to email tab
       // chrome.tabs - Google Chrome - https://goo.gl/ykUrga
+
+      // 以下二行可切回原視窗
       window.focus();
       this.cancel();
 
@@ -113,8 +102,6 @@ function chromeNotify(title, body) {
 }
 
 function main() {
-  setupChromeNotify();
-
   StopTimer();
 
   $('#btnTimer')
