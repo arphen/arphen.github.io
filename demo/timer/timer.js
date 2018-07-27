@@ -1,6 +1,6 @@
 var gIntervalThreeSeconds = 3000;
-var gInterv1 = 5;
-var gInterv2 = 3;
+var gInterv1 = 60;
+var gInterv2 = 10;
 var gTimer;
 
 function StartTimer() {
