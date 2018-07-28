@@ -68,7 +68,7 @@ function countDown(elapsed) {
   $(timerId)
     .html(s);
 
-  if (s === 0) {
+  if (s <= 0) {
     clearInterval(gTimer);
     gTimer = null;
 
