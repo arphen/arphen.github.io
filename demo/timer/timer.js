@@ -4,6 +4,7 @@ var gInterv2 = 10;
 var gTimer;
 var gStage = 0; // 1 - 第一個timer, 2 - 第二個timer
 var gNotify;
+var gTimerStart;
 
 // 程式進入點
 $(document)
@@ -11,12 +12,33 @@ $(document)
     main();
   });
 
+/**
+ *
+ *
+ */
+function accurateSetInterval(callback, interval) {
+  gTimerStart = Date.now();
+  gTimer = setInterval(function () {
+    var delta = Date.now() - gTimerStart; // milliseconds elapsed since gTimerStart
+    var s = Math.floor(delta / 1000); // convert to seconds
+    // what to do here
+    countDown(s);
+    /*
+        output(Math.floor(delta / 1000)); // in seconds
+        // alternatively just show wall clock time:
+        output(new Date()
+          .toUTCString());
+    */
+  }, 100); // update about every second
+}
+
 
 function StartTimer() {
   $('#btnTimer')
     .html('Stop');
 
-  gTimer = setInterval(countDown.bind(null, '#timer1'), 1000);
+  // gTimer = setInterval(countDown.bind(null, '#timer1'), 1000);
+  gTimer = setInterval(countDown, 1000);
   gStage = 1;
 }
 
@@ -27,29 +49,38 @@ function StopTimer() {
   clearInterval(gTimer);
   gTimer = null;
   gStage = 0;
-  $('#timer1')
+  // timer 1
+  $('#spanTimer1')
     .html(gInterv1);
-  $('#timer2')
+  $('#spanTimer1')
+    .attr('interval', gInterv1);
+  // timer 2
+  $('#spanTimer2')
     .html(gInterv2);
+  $('#spanTimer2')
+    .attr('interval', gInterv2);
 }
 
-function countDown(timerId) {
+
+/**
+ * 倒數
+ *
+ */
+function countDown(elapsed) {
+  var timerId = '#spanTimer' + gStage;
   var s = parseInt($(timerId)
-    .text(), 10);
-  if (s > 0) {
-    $(timerId)
-      .html(s - 1);
-  } else { // s===0
+    .attr('interval'), 10) - elapsed;
+  $(timerId)
+    .html(s);
+  if (s === 0) {
     clearInterval(gTimer);
     gTimer = null;
 
-    if (timerId === '#timer1') {
-      //alert('Timer1 Out');
-      chromeNotify('Timer, 進廣告囉!');
+    if (gStage === 1) {
+      chromeNotify('時間到, 進廣告囉！');
       showOverlay('#ok1');
-    } else {
-      //alert('Timer2 Out');
-      chromeNotify('Timer, 廣告完畢!');
+    } else { // gStage === 2
+      chromeNotify('時間到, 廣告播畢！');
       showOverlay('#ok2');
     }
   }
@@ -148,7 +179,8 @@ function main() {
         .hide();
       $('#btnTimer')
         .focus();
-      gTimer = setInterval(countDown.bind(null, '#timer2'), 1000);
+      //gTimer = setInterval(countDown.bind(null, '#timer2'), 1000);
+      gTimer = setInterval(countDown, 1000);
       gStage = 2;
       // 關閉Notify
       gNotify.close();
