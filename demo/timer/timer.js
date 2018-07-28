@@ -23,7 +23,7 @@ function setIntervalAccurate() {
     var elapsed = Math.floor(delta / 1000); // convert to seconds
     // what to do here
     countDown(elapsed);
-  }, 200); // update every 200ms
+  }, 500); // update every 200ms
 }
 
 
