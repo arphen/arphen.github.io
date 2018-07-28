@@ -1,9 +1,9 @@
 // var gIntervalThreeSeconds = 3000;
-var gInterv1 = 60;
-var gInterv2 = 10;
+var gInterv1 = 3;
+var gInterv2 = 3;
 var gTimer;
 var gStage = 0; // 1 - 第一個timer, 2 - 第二個timer
-var gNotify;
+// var gNotify;
 var gDtStart;
 
 // 程式進入點
@@ -110,7 +110,7 @@ function chromeNotify(title, body) {
     Notification.requestPermission();
   } else {
     // options - https://goo.gl/W8Wr6r    
-    gNotify = new Notification(title, {
+    var gNotify = new Notification(title, {
       body: body,
       requireInteraction: true // Notify不會自動關閉
     });
@@ -182,7 +182,7 @@ function main() {
       setIntervalAccurate();
       gStage = 2;
       // 關閉Notify
-      gNotify.close();
+      // gNotify.close();
     });
 
   $('#ok2')
@@ -194,7 +194,7 @@ function main() {
       StopTimer();
       StartTimer();
       // 關閉Notify
-      gNotify.close();
+      // gNotify.close();
     });
 
 }
