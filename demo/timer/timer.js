@@ -1,6 +1,6 @@
 // var gIntervalThreeSeconds = 3000;
-var gInterv1 = 60;
-var gInterv2 = 10;
+var gInterv1 = 5;
+var gInterv2 = 3;
 var gTimer;
 var gStage = 0; // 1 - 第一個timer, 2 - 第二個timer
 var gNotify;
@@ -109,11 +109,13 @@ function chromeNotify(title, body) {
   if (Notification.permission !== 'granted') {
     Notification.requestPermission();
   } else {
-    // options - https://goo.gl/W8Wr6r
+    // options - https://goo.gl/W8Wr6r    
     gNotify = new Notification(title, {
       body: body,
       requireInteraction: true // Notify不會自動關閉
     });
+
+    debugger;
 
     // 以下設定自動關閉Notify
     /*    
