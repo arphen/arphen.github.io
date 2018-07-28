@@ -1,10 +1,10 @@
 // var gIntervalThreeSeconds = 3000;
-var gInterv1 = 5;
-var gInterv2 = 3;
+var gInterv1 = 60;
+var gInterv2 = 10;
 var gTimer;
 var gStage = 0; // 1 - 第一個timer, 2 - 第二個timer
 var gNotify;
-var gTimerStart;
+var gDtStart;
 
 // 程式進入點
 $(document)
@@ -13,23 +13,17 @@ $(document)
   });
 
 /**
- *
- *
+ * 精準計時器
+ * How to create an accurate timer in javascript? - https://goo.gl/hKPcWQ
  */
 function setIntervalAccurate() {
-  gTimerStart = Date.now();
+  gDtStart = Date.now();
   gTimer = setInterval(function () {
-    var delta = Date.now() - gTimerStart; // milliseconds elapsed since gTimerStart
-    var s = Math.floor(delta / 1000); // convert to seconds
+    var delta = Date.now() - gDtStart; // milliseconds elapsed since gDtStart
+    var elapsed = Math.floor(delta / 1000); // convert to seconds
     // what to do here
-    countDown(s);
-    /*
-        output(Math.floor(delta / 1000)); // in seconds
-        // alternatively just show wall clock time:
-        output(new Date()
-          .toUTCString());
-    */
-  }, 1000); // update about every second
+    countDown(elapsed);
+  }, 200); // update every 200ms
 }
 
 
@@ -64,13 +58,16 @@ function StopTimer() {
 /**
  * 倒數
  *
+ * @param {*} elapsed
  */
 function countDown(elapsed) {
   var timerId = '#spanTimer' + gStage;
+  // 計算剩餘秒數s
   var s = parseInt($(timerId)
     .attr('interval'), 10) - elapsed;
   $(timerId)
     .html(s);
+
   if (s === 0) {
     clearInterval(gTimer);
     gTimer = null;
@@ -99,7 +96,7 @@ function showOverlay(showButtonId) {
 
 
 /**
- * 使用 Web Notifications - Web APIs | MDN - https://goo.gl/e1m2BP
+ * 使用 Web Notifications - https://goo.gl/e1m2BP
  * @param {any} title
  * @param {any} body
  */
