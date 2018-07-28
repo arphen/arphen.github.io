@@ -45,11 +45,11 @@ function countDown(timerId) {
 
     if (timerId === '#timer1') {
       //alert('Timer1 Out');
-      chromeNotify('Timer, Timer1 Out');
+      chromeNotify('Timer, 進廣告囉!');
       showOverlay('#ok1');
     } else {
       //alert('Timer2 Out');
-      chromeNotify('Timer, Timer2 Out');
+      chromeNotify('Timer, 廣告完畢!');
       showOverlay('#ok2');
     }
   }
