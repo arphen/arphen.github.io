@@ -1,6 +1,6 @@
 // var gIntervalThreeSeconds = 3000;
-var gInterv1 = 60;
-var gInterv2 = 10;
+var gInterv1 = 5;
+var gInterv2 = 3;
 var gTimer;
 var gStage = 0; // 1 - 第一個timer, 2 - 第二個timer
 var gNotify;
@@ -16,7 +16,7 @@ $(document)
  *
  *
  */
-function accurateSetInterval(callback, interval) {
+function setIntervalAccurate() {
   gTimerStart = Date.now();
   gTimer = setInterval(function () {
     var delta = Date.now() - gTimerStart; // milliseconds elapsed since gTimerStart
@@ -29,7 +29,7 @@ function accurateSetInterval(callback, interval) {
         output(new Date()
           .toUTCString());
     */
-  }, 100); // update about every second
+  }, 1000); // update about every second
 }
 
 
@@ -38,7 +38,8 @@ function StartTimer() {
     .html('Stop');
 
   // gTimer = setInterval(countDown.bind(null, '#timer1'), 1000);
-  gTimer = setInterval(countDown, 1000);
+  // gTimer = setInterval(countDown, 1000);
+  setIntervalAccurate();
   gStage = 1;
 }
 
@@ -51,13 +52,11 @@ function StopTimer() {
   gStage = 0;
   // timer 1
   $('#spanTimer1')
-    .html(gInterv1);
-  $('#spanTimer1')
+    .html(gInterv1)
     .attr('interval', gInterv1);
   // timer 2
   $('#spanTimer2')
-    .html(gInterv2);
-  $('#spanTimer2')
+    .html(gInterv2)
     .attr('interval', gInterv2);
 }
 
@@ -180,7 +179,8 @@ function main() {
       $('#btnTimer')
         .focus();
       //gTimer = setInterval(countDown.bind(null, '#timer2'), 1000);
-      gTimer = setInterval(countDown, 1000);
+      //gTimer = setInterval(countDown, 1000);
+      setIntervalAccurate();
       gStage = 2;
       // 關閉Notify
       gNotify.close();
