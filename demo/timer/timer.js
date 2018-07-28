@@ -5,6 +5,13 @@ var gTimer;
 var gStage = 0; // 1 - 第一個timer, 2 - 第二個timer
 var gNotify;
 
+// 程式進入點
+$(document)
+  .ready(function () {
+    main();
+  });
+
+
 function StartTimer() {
   $('#btnTimer')
     .html('Stop');
