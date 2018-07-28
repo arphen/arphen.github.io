@@ -3,6 +3,7 @@ var gInterv1 = 5;
 var gInterv2 = 3;
 var gTimer;
 var gStage = 0; // 1 - 第一個timer, 2 - 第二個timer
+var gNotify;
 
 function StartTimer() {
   $('#btnTimer')
@@ -75,7 +76,7 @@ function chromeNotify(title, body) {
     Notification.requestPermission();
   } else {
     // options - https://goo.gl/W8Wr6r
-    var n = new Notification(title, {
+    gNotify = new Notification(title, {
       body: body,
       requireInteraction: true // Notify不會自動關閉
     });
@@ -90,7 +91,7 @@ function chromeNotify(title, body) {
     */
 
     // 點了Notify的動作
-    n.onclick = function () {
+    gNotify.onclick = function () {
       // window.open('http://stackoverflow.com/a/13328397/1269037')
       // switch to email tab
       // chrome.tabs - Google Chrome - https://goo.gl/ykUrga
@@ -113,7 +114,7 @@ function chromeNotify(title, body) {
       }
 
       // 關閉Notify
-      n.close();
+      gNotify.close();
 
     };
 
@@ -142,6 +143,8 @@ function main() {
         .focus();
       gTimer = setInterval(countDown.bind(null, '#timer2'), 1000);
       gStage = 2;
+      // 關閉Notify
+      gNotify.close();
     });
 
   $('#ok2')
@@ -152,6 +155,8 @@ function main() {
         .focus();
       StopTimer();
       StartTimer();
+      // 關閉Notify
+      gNotify.close();
     });
 
 }
