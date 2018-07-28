@@ -1,6 +1,6 @@
 // var gIntervalThreeSeconds = 3000;
-var gInterv1 = 5;
-var gInterv2 = 3;
+var gInterv1 = 60;
+var gInterv2 = 10;
 var gTimer;
 var gStage = 0; // 1 - 第一個timer, 2 - 第二個timer
 var gNotify;
