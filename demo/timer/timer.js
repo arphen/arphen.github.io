@@ -1,13 +1,15 @@
-var gIntervalThreeSeconds = 3000;
-var gInterv1 = 60;
-var gInterv2 = 10;
+// var gIntervalThreeSeconds = 3000;
+var gInterv1 = 5;
+var gInterv2 = 3;
 var gTimer;
+var gStage = 0; // 1 - 第一個timer, 2 - 第二個timer
 
 function StartTimer() {
   $('#btnTimer')
     .html('Stop');
 
   gTimer = setInterval(countDown.bind(null, '#timer1'), 1000);
+  gStage = 1;
 }
 
 function StopTimer() {
@@ -16,6 +18,7 @@ function StopTimer() {
 
   clearInterval(gTimer);
   gTimer = null;
+  gStage = 0;
   $('#timer1')
     .html(gInterv1);
   $('#timer2')
@@ -95,8 +98,23 @@ function chromeNotify(title, body) {
       // 以下可切回原視窗
       window.focus();
 
-      // 關閉
+      // 判斷stage
+      switch (gStage) {
+      case 1:
+        $('#ok1')
+          .click();
+        break;
+      case 2:
+        $('#ok2')
+          .click();
+        break;
+      default:
+        break;
+      }
+
+      // 關閉Notify
       n.close();
+
     };
 
   }
@@ -123,6 +141,7 @@ function main() {
       $('#btnTimer')
         .focus();
       gTimer = setInterval(countDown.bind(null, '#timer2'), 1000);
+      gStage = 2;
     });
 
   $('#ok2')
