@@ -112,6 +112,7 @@ function chromeNotify(title, body) {
     // options - https://goo.gl/W8Wr6r    
     gNotify = new Notification(title, {
       body: body,
+      image: 'https://images-na.ssl-images-amazon.com/images/I/718ag-LVKNL.png',
       requireInteraction: true // Notify不會自動關閉
     });
 
