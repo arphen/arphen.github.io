@@ -4,6 +4,11 @@
 /*******************************************************************
  * String extension
  *******************************************************************/
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 String.prototype.trim = function(){
 	return this.replace(/(^\s*)|(\s*$)/g, '');
 };
