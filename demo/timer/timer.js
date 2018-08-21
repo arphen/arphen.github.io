@@ -97,6 +97,8 @@ function showOverlay(showButtonId) {
 
 /**
  * 使用 Web Notifications - https://goo.gl/e1m2BP
+ * 如果通知未顯示，可能是Mac開啟勿擾模式: 
+ *   Use Notifications on your Mac - Apple Support - https://goo.gl/q2FX8Q
  * @param {any} title
  * @param {any} body
  */
