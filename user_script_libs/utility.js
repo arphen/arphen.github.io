@@ -1,6 +1,6 @@
 /**
  * utility.js
- * version: 20171203v3
+ * version: 20200311
  */
 
 /** -------------------------------------------------------
@@ -52,6 +52,30 @@ String.prototype.aplHash = function () {
  * Utility
  *******************************************************************/
 var APLTOOL = {};
+
+
+/**
+ * 用timestamp計算二個時間差
+ * Usage:
+        var dt1 = timestampToDate(ts);
+        var dt2 = timestampToDate(getTimestamp());
+        var hours = hoursBetweenTwoDate(dt1, dt2);
+*/
+APLTOOL.getTimestamp = function () {
+  return Math.round(new Date()
+    .getTime() / 1000);
+};
+
+APLTOOL.timestampToDate = function (ts) {
+  // Create a new JavaScript Date object based on the timestamp
+  // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+  return new Date(ts * 1000);
+};
+
+APLTOOL.hoursBetweenTwoDate = function (date1, date2) {
+  var hours = Math.abs(date1 - date2) / 36e5; // 36e5 is the scientific notation for 60*60*1000
+  return hours;
+};
 
 /**
  * return a random digital string
