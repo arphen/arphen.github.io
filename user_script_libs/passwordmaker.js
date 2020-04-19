@@ -352,10 +352,10 @@ if (typeof (PasswordMaker_SHA256) !== 'object') {
   };
 }
 
-// (Ex) var pass = nilnehpra_generatePassword("Pro*", "udn.com");
+// (Ex) var pass = apl_generatePassword("Pro*", "udn.com");
 var MASTER_PWD = '';
 
-function nilnehpra_generatePassword(profile, theKey) {
+function apl_generatePassword(profile, theKey) {
   var passwdLength, selectedChar;
 
   switch (profile) {
