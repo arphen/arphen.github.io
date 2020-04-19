@@ -1,4 +1,8 @@
 /**
+ * update: 2020/4/19-1
+ */
+
+/**
  * source - http://passwordmaker.org/scripts/hashutils.js
  */
 
