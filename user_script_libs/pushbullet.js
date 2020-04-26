@@ -1,18 +1,19 @@
 /**
  * pushbullet.js
- * version: 20200426v1
+ * version: 20200426v2
  */
 
 /**
  * 使用Pushbullet API發送訊息，參考 - https://docs.pushbullet.com/#push
  * API - https://api.pushbullet.com/v2/pushes
+ * @param {*} token 從這裡取得 https://www.pushbullet.com/#settings/account
  * @param {*} title
  * @param {*} body
  */
 
 let PUSHBULLET = {};
 
-PUSHBULLET.push = (token, title, body) {
+PUSHBULLET.push = (token, title, body) => {
   var xhr = new XMLHttpRequest();
   var url = "https://api.pushbullet.com/v2/pushes";
   xhr.open("POST", url, true);
@@ -26,6 +27,7 @@ PUSHBULLET.push = (token, title, body) {
     }
   };
   var data = JSON.stringify({
+    "type": "note",
     "title": title,
     "body": body
   });
