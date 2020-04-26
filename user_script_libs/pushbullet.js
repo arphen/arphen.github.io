@@ -1,6 +1,6 @@
 /**
  * pushbullet.js
- * version: 20200426v2
+ * version: 20200426v3
  */
 
 /**
@@ -32,4 +32,20 @@ PUSHBULLET.push = (token, title, body) => {
     "body": body
   });
   xhr.send(data);
+};
+
+PUSHBULLET.deleteAllPushes = (token) => {
+  var xhr = new XMLHttpRequest();
+  var url = "https://api.pushbullet.com/v2/pushes";
+  xhr.open("DELETE", url, true);
+  xhr.setRequestHeader("Access-Token", token);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var json = JSON.parse(xhr.responseText);
+      console.log(json);
+      debugger;
+    }
+  };
+  xhr.send();
 };
