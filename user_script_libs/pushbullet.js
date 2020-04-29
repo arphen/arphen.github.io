@@ -1,6 +1,6 @@
 /**
  * pushbullet.js
- * version: 20200427
+ * version: 20200429
  */
 
 /**
@@ -15,38 +15,51 @@
 let PUSHBULLET = {};
 
 PUSHBULLET.push = (token, title, body) => {
-  var xhr = new XMLHttpRequest();
-  var url = "https://api.pushbullet.com/v2/pushes";
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Access-Token", token);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var json = JSON.parse(xhr.responseText);
-      console.log(json);
-      debugger;
-    }
+  var param = {
+    "method": "POST",
+    "url": "https://api.pushbullet.com/v2/pushes",
+    "token": token,
+    "data": JSON.stringify({
+      "type": "note",
+      "title": title,
+      "body": body
+    })
   };
-  var data = JSON.stringify({
-    "type": "note",
-    "title": title,
-    "body": body
-  });
-  xhr.send(data);
+  PUSHBULLET.httpRequest(param);
 };
 
 PUSHBULLET.deleteAllPushes = (token) => {
+  var param = {
+    "method": "DELETE",
+    "url": "https://api.pushbullet.com/v2/pushes",
+    "token": token
+  };
+  PUSHBULLET.httpRequest(param);
+};
+
+PUSHBULLET.httpRequest = (param) => {
   var xhr = new XMLHttpRequest();
-  var url = "https://api.pushbullet.com/v2/pushes";
-  xhr.open("DELETE", url, true);
-  xhr.setRequestHeader("Access-Token", token);
+  xhr.open(param.method, param.url, true);
+  xhr.setRequestHeader("Access-Token", param.token);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var json = JSON.parse(xhr.responseText);
-      console.log(json);
-      debugger;
-    }
+    PUSHBULLET.httpResponse(xhr);
   };
-  xhr.send();
+  if (param.data !== null) {
+    xhr.send(param.data);
+  } else {
+    xhr.send();
+  }
+};
+
+PUSHBULLET.httpResponse = (xhr) => {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    var json = JSON.parse(xhr.responseText);
+    console.log("XMLHttpRequest success");
+    console.log(json);
+  } else {
+    console.log("XMLHttpRequest failed");
+    console.log(xhr.status);
+    debugger;
+  }
 };
