@@ -1,6 +1,6 @@
 /**
  * pushbullet.js
- * version: 20200429
+ * version: 20200429v2
  */
 
 /**
@@ -53,7 +53,8 @@ PUSHBULLET.httpRequest = (param) => {
 };
 
 PUSHBULLET.httpResponse = (xhr) => {
-  if (xhr.readyState === 4 && xhr.status === 200) {
+  //if (xhr.readyState === 4 && xhr.status === 200) {
+  if (xhr.status === 200) {
     var json = JSON.parse(xhr.responseText);
     console.log("XMLHttpRequest success");
     console.log(json);
