@@ -16,7 +16,7 @@
  * format string
  * (Ex) 'Hello {0}, {1}!'.format('World', 'arphen');  --> return 'Hello World, arphen!'
  */
-String.prototype.aplFormat = function () {
+String.prototype.aplFormat = function() {
   var msg = this;
   // The = operator does not make a copy of the data.
   // The = operator creates a new reference to the same data.
@@ -33,7 +33,7 @@ String.prototype.aplFormat = function () {
  * 將字串編為hash code
  * (Ex) var hash = "abc".aplHash()
  */
-String.prototype.aplHash = function () {
+String.prototype.aplHash = function() {
   var hash = 0,
     i, chr;
   if (this.length === 0) {
@@ -61,18 +61,18 @@ var APLTOOL = {};
         var dt2 = timestampToDate(getTimestamp());
         var hours = hoursBetweenTwoDate(dt1, dt2);
 */
-APLTOOL.getTimestamp = function () {
+APLTOOL.getTimestamp = function() {
   return Math.round(new Date()
     .getTime() / 1000);
 };
 
-APLTOOL.timestampToDate = function (ts) {
+APLTOOL.timestampToDate = function(ts) {
   // Create a new JavaScript Date object based on the timestamp
   // multiplied by 1000 so that the argument is in milliseconds, not seconds.
   return new Date(ts * 1000);
 };
 
-APLTOOL.hoursBetweenTwoDate = function (date1, date2) {
+APLTOOL.hoursBetweenTwoDate = function(date1, date2) {
   var hours = Math.abs(date1 - date2) / 36e5; // 36e5 is the scientific notation for 60*60*1000
   return hours;
 };
@@ -83,7 +83,7 @@ APLTOOL.hoursBetweenTwoDate = function (date1, date2) {
  *       var s = hash();
  *       var s = hash(5);
  */
-APLTOOL.hash = function (length) {
+APLTOOL.hash = function(length) {
   var len = length;
   if (length === undefined) {
     len = 20;
@@ -106,7 +106,7 @@ APLTOOL.hash = function (length) {
  * Usage:
  *  addScript('http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js');
  */
-APLTOOL.addScript = function (url) {
+APLTOOL.addScript = function(url) {
   try {
     var scriptElement = document.createElement('script');
     scriptElement.type = 'text/javascript';
@@ -122,7 +122,7 @@ APLTOOL.addScript = function (url) {
  * loadFile("javascript.php", "js") //dynamically load "javascript.php" as a JavaScript file
  * loadFile("mystyle.css", "css")   //dynamically load and add this .css file
  */
-APLTOOL.loadFile = function (filename, filetype) {
+APLTOOL.loadFile = function(filename, filetype) {
   var fileref;
   if (filetype === 'js') { // if filename is a external JavaScript file
     fileref = document.createElement('script');
@@ -152,7 +152,7 @@ APLTOOL.loadFile = function (filename, filetype) {
  *  you can also add a function variable
  *    addScriptCode(aFunction);
  */
-APLTOOL.addScriptCode = function (code) {
+APLTOOL.addScriptCode = function(code) {
   // inject my code in page
   var str = '';
   if (typeof code !== 'string') {
@@ -164,13 +164,13 @@ APLTOOL.addScriptCode = function (code) {
   var script = document.createElement('script');
   script.appendChild(document.createTextNode(str));
   (document.body || document.head || document.documentElement)
-  .appendChild(script);
+    .appendChild(script);
 };
 
 /* Usage:
  *  var v = getUrlParam('p1'); // (Ex) http://foo.bar/somepage?p1=abc&p2=def..., the value of v will be "abc"
  */
-APLTOOL.getUrlParam = function (param) {
+APLTOOL.getUrlParam = function(param) {
   var result = '';
   var tmp = [];
   var items = [];
@@ -193,7 +193,7 @@ APLTOOL.getUrlParam = function (param) {
 /*
  * Check if inside an iframe
  */
-APLTOOL.inIframe = function () {
+APLTOOL.inIframe = function() {
   try {
     return window.self !== window.top;
   } catch (e) {
@@ -208,13 +208,13 @@ APLTOOL.inIframe = function () {
  */
 APLTOOL.myLog = {
   title: 'YOUR_SCRIPT',
-  init: function (title) {
+  init: function(title) {
     // console.log(this.title);
     this.title = title;
     APLTOOL.myLog.log('start...');
     return this.title;
   },
-  log: function (text) {
+  log: function(text) {
     try {
       var d = new Date();
       var n = d.toLocaleString();
