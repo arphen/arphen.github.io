@@ -1,19 +1,43 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>eFMS APP Demo</title>
-    <link rel="stylesheet" href="demo.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="demo.js"></script>
-</head>
-<body>
-    <div id="navigator">
-        <img class="center" src="efms.png" width="500">
-        <span class="center">貨櫃監控系統</span>
-    </div>
+<html lang="zh-TW">
 
-    <div id="header">
-    </div>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>eFMS APP Demo</title>
+  <link rel="stylesheet" href="./demo.css">
+  <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"> -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://kit.fontawesome.com/ac3eb7aa44.js" crossorigin="anonymous"></script>
+  <script src="./demo.js" defer></script>
+</head>
+
+<body onload="init();">
+  <div id="navigator">
+    <img class="center" src="efms.png" width="560">
+    <span class="center">貨櫃監控系統</span>
+    <i id="menu_icon" class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+    <i id="logout_icon" class="fa-solid fa-arrow-right-from-bracket"></i>
+  </div>
+
+  <div id="header">
+    用戶入口
+  </div>
+
+  <div id="content">
+    <br>
+    <span class="center">請選擇您的角色</span><br>
+    <button id="loginManager" class="center button">管理員登入</button><br><br>
+    <button class="center button">司機登入</button>
+  </div>
+
+
+  <div id="menu">
+    <div onclick="toggleMenu()">用戶入口</div>
+    <div onclick="toggleMenu()">勤務管理</div>
+    <div onclick="toggleMenu()">勤務監控</div>
+  </div>
+
+  <div id="mask"></div>
 </body>
+
 </html>
