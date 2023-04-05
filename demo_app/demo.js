@@ -6,3 +6,5 @@ function main() {
     </div>
     `);
 }
+
+setTimeout(main, 3000);
